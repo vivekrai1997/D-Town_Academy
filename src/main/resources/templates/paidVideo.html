@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Paid video</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<style>
+		video {
+			border: 15px solid #808080;
+			border-radius: 15px;
+		}
+
+		#comment-box {
+			max-height: 300px;
+			/* Adjust the max-height as needed */
+			overflow-y: auto;
+		}
+	</style>
+</head>
+
+<body>
+
+	<div>
+		<!--		Nav-->
+		<div class=" bg-body-tertiary	">
+			<div>
+				<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+					<div class="container-fluid">
+						<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarCollapse" aria-controls="navbarCollapse"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon"></span>
+						</button>
+						<div class="collapse navbar-collapse" id="navbarCollapse">
+							<div class="  justify-content-md-center mx-4 r ">
+								<a href="/goToUserHome"><img src="/static/images/vlogo.png"
+										class="d-block mx-lg-auto img-fluid rounded-circle border border-2 border-light"
+										alt="Bootstrap Themes" width="50" height="50" loading="lazy"></a>
+							</div>
+							<ul class="navbar-nav me-auto mb-2 mx-0 mb-md-0">
+								<li class="nav-item">
+									<a class="nav-link active fw-bold fs-5 btn-secondary" href="/goToUserHome">Home</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link active fw-bold   fs-5" href="#contact-section">Contact</a>
+								</li>
+
+								<!--		Dropdown   student courses-->
+								<li class="nav-item dropdown">
+									<a class="nav-link active dropdown-toggle fs-5 fw-bold" href="#" role="button"
+										data-bs-toggle="dropdown" aria-expanded="false">
+										Courses
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="/getPaidVideo">Purchased courses</a></li>
+										<li><a class="dropdown-item" href="/getAllCoursesForUsers">Free courses</a></li>
+									</ul>
+								</li>
+							</ul>
+							<div class="bg-white me-auto rounded-5 border border-secondary border-4 px-3">
+								<h4 class="fw-bold bg	">D-Town Academy </h4>
+							</div>
+							<!--		Student icon-->
+							<div class="  justify-content-md-center mx-2 ">
+								<img src="/static/images/student.png" class="d-block mx-lg-auto img-fluid "
+									alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+							</div>
+
+							<!--	Dropdown  student details-->
+							<div>
+								<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+									<li class="nav-item dropdown">
+										<a class="nav-link active m-0 p-0 dropdown-toggle fs-5 fw-bold" href="#"
+											role="button" data-bs-toggle="dropdown" aria-expanded="false">
+											Student
+										</a>
+										<ul class="dropdown-menu">
+											<li><a class="dropdown-item" href="#"><span th:text="${email}"></span></a>
+											</li>
+											<li><a class="dropdown-item" href="#"><span th:text="${mobile}"></span></a>
+											</li>
+										</ul>
+									</li>
+								</ul>
+								<p class=" p-0 m-0  text-white-50 fs-6 "><span th:text="${userName}"></span></p>
+							</div>
+							<div>
+								<a href="/logOut">
+									<button class="btn btn-secondary btn-sms px-4 mx-2" type="submit">Log out</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+
+
+			<!--					paid video container-->
+			<div class="container shadow-lg border border-dark rounded-5 bg-dark-subtle mb-5 pt-2 mt-2">
+				<!--				<div class="container border border-dark rounded-4">-->
+				<div class=" bg-dark-subtle mt-5 mb-3 py-2">
+					<h5 class="text-center  fw-bold text-body-emphasis lh-1 pb-2">How to make Roti - Vivek's ninja
+						technique</h5>
+					<div class=" video-container d-felx text-center justify-content-center   align-items-center">
+						<video width="76%" height="480" controls>
+							<source src="static/videos/roti.mp4" type="video/mp4">
+							<source src="movie.ogg" type="video/ogg">
+							Your browser does not support the video tag.
+						</video>
+						<div class="row mt-0 pb-1">
+							<div class="col-12 d-flex justify-content-center align-items-center">
+								<div class="content bg-secondary bg-opacity-50 border border-dark rounded-4 "
+									style="width: 50px; height: 25px;">
+									<img src="/static/images/mac.png" class="d-block mx-lg-auto img-fluid "
+										alt="Bootstrap Themes" width="23" height="23" loading="lazy">
+								</div>
+							</div>
+						</div>
+						<div class="row ">
+							<div class="col-12 d-flex justify-content-center align-items-center">
+								<div class="content bg-secondary bg-opacity-53 border border-dark rounded-5 "
+									style="width: 120px; height: 20px;">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--				</div>-->
+		</div>
+
+		<!--			comment section-->
+		<div class="container bg-dark-subtle mb-5 border border-dark border-4 rounded-5">
+			<div class="container mt-2">
+				<form id="comment-form" action="/addComment" method="post">
+					<div class="mb-1">
+						<label for="comment" class="form-label">Comment:</label>
+						<textarea class="form-control p-1 " name="content" id="comment" rows="3" required>
+				</textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+			</div>
+
+			<div class="container mt-2 mb-2">
+				<h4>Comment Box</h4>
+				<div class="card">
+					<div class="card-body " id="comment-box">
+						<div th:each="comment : ${comments}">
+							<span class="fw-semibold" th:text="${comment.userName}"></span>: <span
+								th:text="${comment.content}"></span>
+							<p class="fw-lighter fs-6" th:text="${comment.dateAndTime}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<!--		footer-->
+		<div id="contact-section">
+			<footer class="bg-dark shadow text-white py-2">
+				<p class="text-center text-white fw-light m-0">Contact@ </p>
+				<ul class="nav justify-content-center ">
+					<li class="nav-item"><a href="https://www.facebook.com/VivekSotangRai" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/fb.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://instagram.com/viveksotangrai?igshid=MzMyNGUyNmU2YQ=="
+							target="_blank" class="nav-link px-2 text-white">
+							<img src="/static/images/instagram.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://www.linkedin.com/in/vivekrai1997" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/linkedin.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="mailto:viveksotangrai@gmail.com" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/gmail.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="45" height="45" loading="lazy">
+						</a> </li>
+					</a></li>
+				</ul>
+				<p class="text-center text-secondary">© 2023 dtownacademy - <span
+						class="text-white fw-lighter">viveksotangrai@gmail.com</span> </p>
+			</footer>
+		</div>
+		<!--Container closing div-->
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

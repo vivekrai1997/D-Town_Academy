@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Trainer Home</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+</head>
+
+<body>
+
+	<!--		Nav-->
+	<div class=" bg-body-tertiary">
+		<div>
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<div class="  justify-content-md-center mx-4 r ">
+							<a href="/goToUserHome"><img src="/static/images/vlogo.png"
+								class="d-block mx-lg-auto img-fluid rounded-circle border border-2 border-light"
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy"></a>
+						</div>
+						<ul class="navbar-nav me-auto mb-2 mx-0 mb-md-0">
+							<li class="nav-item">
+								<a class="nav-link active fw-bold fs-5 btn-secondary" href="/goToUserHome">Home</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link active dropdown-toggle fs-5 fw-bold" href="#" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									About
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="#Welcome-Intro-section">About website</a></li>
+									<li><a class="dropdown-item" href="#Vivek-Intro-section">Creator</a></li>
+								</ul>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active fw-bold   fs-5" href="#contact-section">Contact</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active fw-bold fs-5" href="#feedback-section">Feedback</a>
+							</li>
+							<!--		Dropdown   Trainer courses-->
+							<li class="nav-item dropdown">
+								<a class="nav-link active dropdown-toggle fs-5 fw-bold" href="#" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Courses
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/getAllCoursesForUsers">All courses</a></li>
+								</ul>
+							</li>
+						</ul>
+						<div class="bg-white me-auto rounded-5 border border-secondary border-4 px-3">
+							<h4 class="fw-bold bg	">D-Town Academy </h4>
+						</div>
+						<!--						Trainer icon-->
+						<div class="  justify-content-md-center mx-2 ">
+							<img src="/static/images/trainer.png" class="d-block mx-lg-auto img-fluid "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</div>
+
+						<!--		Dropdown  Trainer details -->
+						<div>
+							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+								<li class="nav-item dropdown">
+									<a class="nav-link active dropdown-toggle p-0 m-0 fs-5 fw-bold" href="#"
+										role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Trainer
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><span th:text="${email}"></span></a></li>
+										<li><a class="dropdown-item" href="#"><span th:text="${mobile}"></span></a></li>
+									</ul>
+								</li>
+							</ul>
+							<p class=" p-0 m-0  text-white-50 fs-6 "><span th:text="${userName}"></span></p>
+						</div>
+						<div>
+							<a href="/logOut">
+								<button class="btn btn-secondary btn-sms px-4 mx-2" type="submit">Log out</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<br><br><br>
+
+		<!--			Welcome Student Intro-->
+		<div class="container border border-dark rounded-5  shadow-lg col-xxl-8 px-5 py-5 mt-5 bg-dark-subtle   ">
+			<div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+				<!--				<div class="col-10 col-sm-8 col-lg-6 ">-->
+				<!--					<img src="/static/book.jpg" class="d-block mx-lg-auto img-fluid rounded-4" alt="Bootstrap Themes"-->
+				<!--						width="500" height="100" loading="lazy">-->
+				<!--				</div>-->
+				<div class="bd-example-snippet bd-code-snippet px-0 col-10 col-sm-11 col-lg-6 ">
+					<div class="bd-example m-0  ">
+						<div id="carouselExampleCaptions" class="carousel slide " data-bs-ride="carousel">
+							<div class="carousel-indicators">
+								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0"
+									class="" aria-label="Slide 1"></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+									aria-label="Slide 2" class=""></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+									aria-label="Slide 3" class="active" aria-current="true"></button>
+							</div>
+							<div class="carousel-inner">
+								<div class="carousel-item ">
+									<img src="/static/book.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="350" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>First slide label</h5>
+										<p>Some representative placeholder content for the first slide.</p>
+									</div>
+								</div>
+								<div class="carousel-item">
+									<img src="/static/images/group.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="350" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>Second slide label</h5>
+										<p>Some representative placeholder content for the second slide.</p>
+									</div>
+								</div>
+								<div class="carousel-item active">
+									<img src="/static/images/coding.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="350" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+									<div class="carousel-caption d-none d-md-block">
+										<h5>Third slide label</h5>
+										<p>Some representative placeholder content for the third slide.</p>
+									</div>
+								</div>
+							</div>
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6">
+					<div class="row align-items-center">
+						<div class="col-lg-3">
+							<h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Hello!</h1>
+						</div>
+						<div class="col-md-2 text-center mb-3">
+							<img src="/static/images/handB.png" class="img-fluid" alt="Bootstrap Themes" width="50"
+								height="50" loading="lazy">
+						</div>
+					</div>
+					<h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3"><span th:text="${userName}"></span>
+					</h1>
+					<p class="lead"><span class="fw-bold">" </span> We're grateful for your involvement, and
+						as a dedicated trainer, you can contribute by offering courses that will shape students'
+						brighter futures.<span class="fw-bold"> " </span></p>
+					<div class="d-grid gap-2 d-md-flex justify-content-center">
+						<a href="/getAddCoursePage"><button type="button"
+								class="btn btn-primary btn-lg px-4 me-md-2">Add Courses</button></a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--		Welcome to our website Intro-->
+		<div class="container d-flex align-items-center py-4" id="Welcome-Intro-section">
+			<div
+				class=" container border border-dark rounded-5  shadow-lg px-2 py-3 my-5  bg-dark-subtle  text-center  ">
+				<div class="d-flex justify-content-center">
+					<div class="col-10 col-sm-10 col-lg-2  justify-content-md-center ">
+						<img src="/static/images/vlogo.png"
+							class="d-block mx-lg-auto img-fluid rounded-circle border border-light border-3"
+							alt="Bootstrap Themes" width="70" height="70" loading="lazy">
+					</div>
+				</div>
+				<h1 class="display-7 fw-bold text-body-emphasis text-center ">Welcome to our online platform</h1>
+				<div class="col-lg-11  mx-auto py-3 px-3 ">
+					<p class="lead mb-4 "> <span class="fw-bold">" </span> Welcome to our non-profit web application,
+						designed as part of my portfolio
+						to
+						showcase my
+						work. My primary goal here is to share my projects with you.On this platform, you can join as
+						either a trainer or a student. Trainers have the opportunity to add courses for students, and
+						students
+						can access these resources. Some courses are available for purchase, but you can use dummy
+						payment methods
+						for testing, as this site is a prototype in its development phase.Students can also leave
+						comments on videos.<u>I encourage you to join as a student</u>  to explore the platform, purchase
+						courses, and experience
+						the work
+						I've done. Your feedback is valuable, and Please keep in mind that this website is the creation
+						of a
+						complete beginner in the software industry- <span class="fw-semibold">Vivek Rai</span> a
+						Mechanical
+						Engineer aspiring to build a career in
+						the
+						world of software constantly learning and growing in this new field,
+						so your understanding is truly valued. <span class="fw-bold"> "</span></p>
+				</div>
+			</div>
+		</div>
+
+		<!--			carousel  Motivational-->
+		<div class="container border border-dark rounded-5 shadow-lg col-xxl-8 px-5 py-5 mt-2 bg-dark-subtle   ">
+			<div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+				<!--								<div class="col-10 col-sm-8 col-lg-6 ">-->
+				<!--									<img src="/static/book.jpg" class="d-block mx-lg-auto img-fluid rounded-circle" alt="Bootstrap Themes"-->
+				<!--										width="500" height="500" loading="lazy">-->
+				<!--								</div>-->
+				<div class="bd-example-snippet bd-code-snippet px-0 col-10 col-sm-11 col-lg-6 ">
+					<div class="bd-example m-0  ">
+						<div id="carouselExampleCaptions2" class="carousel slide " data-bs-ride="carousel">
+							<div class="carousel-indicators">
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0"
+									class="" aria-label="Slide 1"></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1"
+									aria-label="Slide 2" class=""></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="2"
+									aria-label="Slide 3" class="active" aria-current="true"></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="3"
+									aria-label="Slide 4" class="active" aria-current="true"></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="4"
+									aria-label="Slide 5" class="active" aria-current="true"></button>
+								<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="5"
+									aria-label="Slide 6" class="active" aria-current="true"></button>
+							</div>
+							<div class="carousel-inner">
+								<div class="carousel-item ">
+									<img src="/static/images/spider.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+								<div class="carousel-item">
+									<img src="/static/images/welding.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+								<div class="carousel-item active">
+									<img src="/static/images/lab.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+								<div class="carousel-item active">
+									<img src="/static/images/failure.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+								<div class="carousel-item active">
+									<img src="/static/images/passion.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+								<div class="carousel-item active">
+									<img src="/static/images/sun.jpg"
+										class="bd-placeholder-img bd-placeholder-img-lg d-block w-100  rounded-4"
+										width="800" height="340" xmlns="" role="img"
+										aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice"
+										focusable="false">
+								</div>
+							</div>
+							<button class="carousel-control-prev" type="button"
+								data-bs-target="#carouselExampleCaptions2" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button"
+								data-bs-target="#carouselExampleCaptions2" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-6 ">
+					<h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3 text-center ">Keep learning
+					</h1>
+					<p class="lead "><span class="fw-bold">''</span> Keep learning, keep growing. Embrace
+						new knowledge, technologies,
+						and experiences. The journey of learning is a lifelong adventure that empowers us to shape the
+						future. <span class="fw-bold">''</span></p>
+				</div>
+			</div>
+		</div>
+
+		<!--			creator intro-->
+		<div class="container d-flex align-items-center py-4" id="Vivek-Intro-section">
+			<div class="container border border-dark rounded-5 shadow-lg col-xxl-8 px-5 py-5 mt-5 bg-dark-subtle ">
+				<div class=" row flex-lg-row-reverse align-items-center g-5 py-2">
+					<div class="col-lg-8">
+						<h1 class="display-6 fw-bold text-body-emphasis lh-1 mb-3">Hi!
+							<span th:text="${userName}"></span>
+						</h1>
+						<p class="lead">
+							<span class="fw-bold">"</span> I'm Vivek Rai, hailing from the scenic town of Darjeeling. My
+							journey began in the
+							field
+							of mechanical engineering, where I garnered valuable experience across various industries.
+							However, my heart has also always been set on software engineering—a passion that led me to
+							explore
+							new avenues.
+							My commitment to constant learning and growth motivated me to pivot to a career as a
+							software
+							Developer.
+							This website represents my first steps into the world of
+							software development—a testament to my determination and willingness to learn.
+							Although a work in progress with noticeable flaws, symbolizes my
+							unwavering determination to learn and evolve in this dynamic field.
+							My primary focus is in backend development and the frontend part is a
+							work
+							in progress, but I am committed to improving it along the way.<span class="fw-bold">"</span>
+						</p>
+					</div>
+					<div class="col-10 col-sm-10 col-lg-4 ">
+						<img src="/static/images/suit2.png" class="d-block mx-lg-auto img-fluid rounded-circle  "
+							alt="Bootstrap Themes" width="320" height="320" loading="lazy">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--		Pricing-->
+		<div class="container">
+			<header>
+				<div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+					<h1 class="display-4 fw-normal text-body-emphasis">Pricing</h1>
+					<p class="fs-5 text-body-secondary"> <span class="fw-bold">"</span> We offer both free and
+						budget-friendly paid courses. You can
+						explore our paid courses without any actual financial commitment by using dummy or invalid
+						payment details. Please note that this website is still in its prototype phase, and real payment
+						transactions have not been implemented, so no real money will be charged. <span
+							class="fw-bold">" </span> </p>
+				</div>
+			</header>
+
+			<main>
+				<div class="row row-cols-1 row-cols-md-3 mb-3 text-center  justify-content-center  p-5">
+					<div class="col mx-5 ">
+						<div class="card mb-4 rounded-3 shadow-lg">
+							<div class="card-header py-3 bg-secondary bg-gradient">
+								<h4 class="my-0 fw-normal">Free courses</h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">₹0</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<li>Offer</li>
+									<li>No need to pay</li>
+									<li>Charges in future</li>
+									<li>Can ask doubts in comment section</li>
+								</ul>
+								<a href="/register">
+									<button type="button"
+										class="w-100 btn btn-sms bg-secondary bg-gradient fw-semibold ">Sign up for
+										free</button>
+								</a>
+							</div>
+						</div>
+					</div>
+
+					<div class="col mx-5 ">
+						<div class="card mb-4 rounded-3 shadow-lg border-primary ">
+							<div class="card-header py-3  bg-success bg-gradient border-primary">
+								<h4 class="my-0 fw-normal">Paid courses</h4>
+							</div>
+							<div class="card-body">
+								<h1 class="card-title pricing-card-title">₹100</h1>
+								<ul class="list-unstyled mt-3 mb-4">
+									<li>For students</li>
+									<li>One time payment</li>
+									<li>Life time access</li>
+									<li>Phone and email support</li>
+								</ul>
+								<a href="/register" class="">
+									<button type="button"
+										class="w-100  btn btn-sms bg-success bg-gradient fw-semibold ">Sign up
+									</button>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+				</table>
+			</main>
+		</div>
+		
+		
+<!--			feedback-->
+		<div class=" container  bg-dark-subtle col-7 mb-5 border border-dark border-3 rounded-5" id="feedback-section">
+			<div class="container mt-2">
+				<form id="comment-form" action="/addFeedback" method="post">
+					<div class="my-1">
+						<h4 class="text-center fw-bold">Feedback</h4>
+						<textarea class="form-control p-1 " name="content" id="comment" rows="4" required>
+				</textarea>
+					</div>
+					<div class="text-center"> <!-- Center the button -->
+						<button type="submit" class="btn btn-primary mx-auto rounded-4">Submit</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<!--		footer-->
+		<div id="contact-section">
+			<footer class="bg-dark shadow text-white py-2">
+				<p class="text-center text-white fw-light m-0">Contact@ </p>
+				<ul class="nav justify-content-center ">
+					<li class="nav-item"><a href="https://www.facebook.com/VivekSotangRai" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/fb.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://instagram.com/viveksotangrai?igshid=MzMyNGUyNmU2YQ=="
+							target="_blank" class="nav-link px-2 text-white">
+							<img src="/static/images/instagram.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://www.linkedin.com/in/vivekrai1997" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/linkedin.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="mailto:viveksotangrai@gmail.com" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/gmail.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="45" height="45" loading="lazy">
+						</a> </li>
+					</a></li>
+				</ul>
+				<p class="text-center text-secondary">© 2023 dtownacademy - <span
+						class="text-white fw-lighter">viveksotangrai@gmail.com</span> </p>
+			</footer>
+		</div>
+		<!--Container closing div-->
+	</div>
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

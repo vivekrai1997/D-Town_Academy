@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Add Lesson</title>
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<style>
+	.form-box{
+		background-color: #F5DEB3;
+	}
+		#course-table{
+			   max-height: 400px; 
+    overflow-y: auto;
+    border: 4px solid dimgrey;
+		}
+		
+#thead1 {
+    position: sticky;
+    top: 0; 
+    z-index: 1; 
+}
+	::-webkit-scrollbar {
+    width: 20px; 
+}
+		::-webkit-scrollbar-thumb {
+    background-color: darkslategrey; 
+}
+	</style>
+</head>
+
+<body>
+	<!--		Nav-->
+	<div class=" bg-body-tertiary	">
+		<div>
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<div class="  justify-content-md-center mx-4 r ">
+							<a href="/goToUserHome"><img src="/static/images/vlogo.png"
+								class="d-block mx-lg-auto img-fluid rounded-circle border border-2 border-light"
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy"></a>
+						</div>
+						<ul class="navbar-nav me-auto mb-2 mx-0 mb-md-0">
+							<li class="nav-item">
+								<a class="nav-link active fw-bold fs-5 btn-secondary" href="/goToUserHome">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active fw-bold   fs-5" href="#contact-section">Contact</a>
+							</li>
+
+							<!--		Dropdown   student courses-->
+							<li class="nav-item dropdown">
+								<a class="nav-link active dropdown-toggle fs-5 fw-bold" href="#" role="button"
+									data-bs-toggle="dropdown" aria-expanded="false">
+									Courses
+								</a>
+								<ul class="dropdown-menu">
+									<li><a class="dropdown-item" href="/getAllCoursesForUsers">All courses</a></li>
+								</ul>
+							</li>
+
+						</ul>
+						<div class="bg-white me-auto rounded-5 border border-secondary border-4 px-3">
+							<h4 class="fw-bold bg	">D-Town Academy </h4>
+						</div>
+						<!--						Trainer icon-->
+						<div class="  justify-content-md-center mx-2 ">
+							<img src="/static/images/trainer.png" class="d-block mx-lg-auto img-fluid "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</div>
+
+						<!--	Dropdown  student details-->
+						<div>
+							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+								<li class="nav-item dropdown">
+									<a class="nav-link active dropdown-toggle p-0 m-0 fs-5 fw-bold" href="#"
+										role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Trainer
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><span th:text="${email}"></span></a></li>
+										<li><a class="dropdown-item" href="#"><span th:text="${mobile}"></span></a></li>
+									</ul>
+								</li>
+							</ul>
+							<p class=" p-0 m-0  text-white-50 fs-6 "><span th:text="${userName}"></span></p>
+						</div>
+						<div>
+							<a href="/logOut">
+								<button class="btn btn-secondary btn-sms px-4 mx-2" type="button">Log out</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<br><br>
+		<br><br>
+		<!--		Notice if Course Id belongs to other user-->
+		<div th:if="${showNotice1}" class="">
+			<p class="text-bg-danger text-center">This Course Id belongs to another Trainer, please re-enter yours as
+				shown in the table</p>
+		</div>
+		<!--		Notice if wrong Course Id entered -->
+		<div th:if="${showNotice2}">
+			<p class="text-bg-danger text-center">Wrong Course Id, please re-enter as shown in the table</p>
+		</div>
+
+		<!--		registration-->
+		<div class="container mb-5">
+			<section class="w-100 px-4 py-4 mt-3 bg-dark-subtle shadow-lg border border-dark rounded-4">
+				<style>
+					.divider:after,
+					.divider:before {
+						content: "";
+						flex: 1;
+						height: 1px;
+						background: #eee;
+					}
+				</style>
+
+				<!--					error message -functions with JavaScript-->
+				<!--				<div th:if="${error1}" class="error-message text-center">-->
+				<!--					<h5 class="text-danger">Email Id already exists, try another id</h5>-->
+				<!--				</div>-->
+
+				<!--registration form-->
+				<div class="row  d-flex justify-content-center ">
+
+					<div class="form-box col-md-7 col-lg-5 col-xl-5 fs-5 fw-bold  border border-dark border-2 rounded-4">
+						<form id="registrationForm" action="/addLesson" method="post" onsubmit="return validateForm()">
+							<!-- Email input -->
+							<div class="text-center pt-2 pb-4">
+								<h2 class="fs-5 fw-semibold text-success">Add new topic-video into your course</h2>
+							</div>
+							<div class="form-outline mb-1">
+								<input type="number" id="form1Example1" name="courseId" autocomplete="off"
+									class="form-control form-control-lg  fw-light" maxlength="20">
+								<label class="form-label" for="courseId" style="margin-left: 0px;">C_Id
+									<span class="fs-6 fw-light fst-italic"> -Refer table</span>
+								</label>
+								<div class="form-notch">
+									<div class="form-notch-leading" style="width: 9px;"></div>
+									<div class="form-notch-middle" style="width: 88.8px;"></div>
+									<div class="form-notch-trailing"></div>
+								</div>
+							</div>
+							<div class="form-outline mb-1">
+								<input type="hidden" id="form1Example2" name="coursePrice"
+									class="form-control form-control-lg" readonly value="₹ 0.0">
+
+								<div class="form-notch">
+									<div class="form-notch-leading" style="width: 9px;"></div>
+									<div class="form-notch-middle" style="width: 88.8px;"></div>
+									<div class="form-notch-trailing"></div>
+								</div>
+							</div>
+							<div class="form-outline mb-1">
+								<input type="text" id="form1Example3" name="lessonName" autocomplete="off"
+									class="form-control form-control-lg" maxlength="25">
+								<label class="form-label" for="lessonName" style="margin-left: 0px;">Topic Name</label>
+								<div class="form-notch">
+									<div class="form-notch-leading" style="width: 9px;"></div>
+									<div class="form-notch-middle" style="width: 88.8px;"></div>
+									<div class="form-notch-trailing"></div>
+								</div>
+							</div>
+							<img src="/static/images/videoId.png" class=" border border-dark  p-1"
+								alt="Bootstrap Themes" width="350" height="85" loading="lazy">
+							<!-- video link -->
+							<div class="form-outline mb-1 mt-1">
+								<input type="url" id="form1Example4" name="link"
+									class="form-control form-control-lg fs-6 border  border-dark " value="https://www.youtube.com/embed/"
+									autocomplete="off"
+									placeholder="refresh if u accidentally deleted URL (add video id after url)"
+									style="font-weight: 100;">
+									<label class="form-label" for="link" style="margin-left: 0px;">Video Link <span
+										class="fs-6 fw-light">-Copy only video_Id from youtube video of your
+										choice as shown in the picture and paste it after existing url in box
+										<b>ex-</b><u>https://www.youtube.com/embed/<strong>xOCzjgjedRc</strong></u>
+										 Uploading video
+										option
+										will be updated soon.</span></label>
+								<div class="form-notch">
+									<div class="form-notch-leading" style="width: 9px;"></div>
+									<div class="form-notch-middle" style="width: 64px;"></div>
+									<div class="form-notch-trailing"></div>
+								</div>
+							</div>
+
+
+							<!-- Submit button -->
+							<div class="justify-content-center text-center">
+								<button type="submit" class="btn btn-primary btn-lg btn-block mb-1 mt-2 p-2 mx-2">Add
+									Topic-video</button>
+							</div>
+						</form>
+					</div>
+
+					<!--					Course table-->
+					<div class="form-box col-md-8 col-lg-7 pt-0 col-xl-6 py-5 m-4 mt-1  border border-dark border-2 rounded-4">
+						<a href="/getAddCoursePage"><button
+								class="btn btn-primary btn-sms border border-dark rounded-4 p-1 mt-1 mb-2 m-0" type="">Add
+								course</button></a>
+						<span class="fw-lighter fs-6 mx-2">Go back to add new course</span>
+						<div id="course-table">
+						<table class="table border border-dark  border-4  table-hover table-light  ">
+							<thead id="thead1">
+								<tr class="table-dark">
+									<!--									<th scope="col" class="col-1  ">No.</th>-->
+									<th scope="col" class="  ">C _Id</th>
+									<th scope="col" class="">Course Name</th>
+									<th scope="col" class="">Lesson Name</th>
+								</tr>
+							</thead>
+							<thead>
+								<tr class="table-primary ">
+									<!--									<th>01</th>-->
+									<th>101</th>
+									<th>Java <span class="fw-bold text-primary">(Demo)</span> </th>
+									<th> ● Data Types <span class="fw-bold text-primary">(Demo)</span></th>
+								</tr>
+							</thead>
+							<tbody class="fs-6 fw-semibold">
+								<tr th:each="clist , rowStat: ${clist}">
+									<!--									<td th:text="${rowStat.count}"></td>-->
+									<td class="text-success" th:text="${clist.courseId}"></td>
+									<td th:text="${clist.courseName}"></td>
+									<td>
+										<ul>
+											<li th:each="lesson : ${clist.lessons}">
+												<span th:text="${lesson.lessonName}"></span>
+											</li>
+										</ul>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						</div>
+						<div class="fw-light fs-5 mx-2 text-center">Your added courses will be shown here.</div>
+					</div>
+				</div>
+			</section>
+		</div>
+		<!--		footer-->
+		<div id="contact-section">
+			<footer class="bg-dark shadow text-white py-2">
+				<p class="text-center text-white fw-light m-0">Contact@ </p>
+				<ul class="nav justify-content-center ">
+					<li class="nav-item"><a href="https://www.facebook.com/VivekSotangRai" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/fb.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://instagram.com/viveksotangrai?igshid=MzMyNGUyNmU2YQ=="
+							target="_blank" class="nav-link px-2 text-white">
+							<img src="/static/images/instagram.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://www.linkedin.com/in/vivekrai1997" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/linkedin.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="mailto:viveksotangrai@gmail.com" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/gmail.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="45" height="45" loading="lazy">
+						</a> </li>
+					</a></li>
+				</ul>
+				<p class="text-center text-secondary">© 2023 dtownacademy- <span
+						class="text-white fw-lighter">viveksotangrai@gmail.com</span> </p>
+			</footer>
+		</div>
+		<!--Container closing div-->
+	</div>
+
+
+
+
+
+
+	<!--JavaScript for display notice if any inout not filled-->
+	<script>
+		function validateForm() {
+			var coursename = document.getElementById("form1Example1").value;
+			var courseprice = document.getElementById("form1Example2").value;
+			var lessonName = document.getElementById("form1Example3").value;
+			var link = document.getElementById("form1Example4").value;
+
+			if (coursename === "" || courseprice === "" || lessonName === "" || link === "") {
+				// Display a notice message here, for example:
+				alert("Please fill in all required fields");
+				return false; // Prevent form submission
+			}
+
+			// Form is valid, allow submission
+			return true;
+		}
+	</script>
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>

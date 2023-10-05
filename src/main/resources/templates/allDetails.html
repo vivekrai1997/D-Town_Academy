@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>All details</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+	<style>
+		iframe {
+			border: 15px solid #808080;
+			border-radius: 15px;
+
+			/* Change to the desired style and color */
+		}
+
+		video {
+			border: 15px solid #808080;
+			border-radius: 15px;
+
+			/* Change to the desired style and color */
+		}
+
+		#comment-box {
+			max-height: 380px;
+			overflow-y: auto;
+			border: 4px solid dimgrey;
+		}
+		#feedback-box {
+			max-height: 300px;
+			overflow-y: auto;
+			border: 4px solid dimgrey;
+		}
+		
+
+		#free-course {
+			max-height: 380px;
+			overflow-y: auto;
+			border: 4px solid dimgrey;
+		}
+
+		#free-course table thead {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
+
+		#login-table {
+			max-height: 380px;
+			overflow-y: auto;
+			border: 4px solid dimgrey;
+		}
+
+		#login-table table thead {
+			position: sticky;
+			top: 0;
+			z-index: 1;
+		}
+	</style>
+</head>
+
+<body>
+
+	<!--		Nav-->
+	<div class=" bg-body-tertiary	">
+		<div>
+			<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+						data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="collapse navbar-collapse" id="navbarCollapse">
+						<div class="  justify-content-md-center mx-4 r ">
+							<a href="/goToUserHome"><img src="/static/images/vlogo.png"
+									class="d-block mx-lg-auto img-fluid rounded-circle border border-2 border-light"
+									alt="Bootstrap Themes" width="50" height="50" loading="lazy"></a>
+						</div>
+						<ul class="navbar-nav me-auto mb-2 mx-0 mb-md-0">
+							<li class="nav-item">
+								<a class="nav-link active fw-bold fs-5 btn-secondary" href="/goToUserHome">Home</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link active fw-bold   fs-5" href="#contact-section">Contact</a>
+							</li>
+
+						</ul>
+						<div class="bg-white me-auto rounded-5 border border-secondary border-4 px-3">
+							<h4 class="fw-bold bg	">D-Town Academy </h4>
+						</div>
+						<!--		Admin icon-->
+						<div class="  justify-content-md-center mx-2 ">
+							<img src="/static/images/admin.png" class="d-block mx-lg-auto img-fluid "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</div>
+
+						<!--	Dropdown  Admin details-->
+						<div>
+							<ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+								<li class="nav-item dropdown">
+									<a class="nav-link active m-0 p-0 dropdown-toggle fs-5 fw-bold" href="#"
+										role="button" data-bs-toggle="dropdown" aria-expanded="false">
+										Admin
+									</a>
+									<ul class="dropdown-menu">
+										<li><a class="dropdown-item" href="#"><span th:text="${email}"></span></a></li>
+										<li><a class="dropdown-item" href="#"><span th:text="${mobile}"></span></a></li>
+									</ul>
+								</li>
+							</ul>
+							<p class=" p-0 m-0  text-white-50 fs-6 "><span th:text="${userName}"></span></p>
+						</div>
+						<div>
+							<a href="/logOut">
+								<button class="btn btn-secondary btn-sms px-4 mx-2" type="submit">Log out</button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</nav>
+		</div>
+
+		<br><br><br>
+
+
+
+		<!--				Trainer table-->
+		<div class="container shadow-lg border border-dark rounded-5 bg-dark-subtle p-2 mt-5">
+			<div class="bg mt-2 pb-3 px-5">
+				<h2 class="text-center fw-bold text-body-emphasis lh-1">Trainers detail</h2>
+				<div class="table-responsive">
+					<table class="table border border-3 table-bordered border-light table-dark">
+						<thead class="table-active">
+							<tr>
+								<th scope="col" class="col-1">Sl.no.</th>
+								<th scope="col" class="col-2">Trainer Id</th>
+								<th scope="col">Trainer Name</th>
+								<th scope="col">Email id</th>
+								<th scope="col">Phone no.</th>
+								<th scope="col">Date of joining</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr th:each="trainer, rowStat: ${trainerList}" th:if="${trainer.role == 'Trainer'}">
+								<td th:text="${rowStat.count}"></td>
+								<td th:text="${trainer.id}"></td>
+								<td th:text="${trainer.name}"></td>
+								<td th:text="${trainer.email}"></td>
+								<td th:text="${trainer.mobile}"></td>
+								<td th:text="${trainer.dateAndTime}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+		<!--				Student table-->
+		<div class="container shadow-lg border border-dark rounded-5 bg-dark-subtle p-2 mt-5">
+			<div class="container mt-2 pb-3 px-5 ">
+				<!--				<div class="container border border-dark rounded-4">-->
+				<h2 class="text-center fw-bold text-body-emphasis lh-1">Students detail</h2>
+				<div class="table-responsive">
+					<table class="table border border-3 table-bordered border-light  table-dark  ">
+						<thead class="table-active">
+							<tr>
+								<th scope="col" class="col-1  ">Sl.no.</th>
+								<th scope="col" class="col-2">Student Id</th>
+								<th scope="col" class="">Student Name</th>
+								<th scope="col" class="">Email id</th>
+								<th scope="col" class="">Phone no.</th>
+								<th scope="col">Date of joining</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="student, rowStat: ${studentList}" th:if="${student.role == 'Student'}">
+								<td th:text="${rowStat.count}"></td>
+								<td th:text="${student.id}"></td>
+								<td th:text="${student.name}"></td>
+								<td th:text="${student.email}"></td>
+								<td th:text="${student.mobile}"></td>
+								<td th:text="${student.dateAndTime}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+
+
+		<!--				Paid course table-->
+		<div class="container shadow-lg border border-dark rounded-5 bg-dark-subtle p-2 mt-5">
+			<div class="container mt-3 pb-4 px-5 ">
+				<!--				<div class="container border border-dark rounded-4">-->
+				<h2 class="text-center  fw-bold text-body-emphasis lh-1">Paid courses</h2>
+				<div class="table-responsive">
+					<table class="table border border-3 table-bordered border-light  table-dark  ">
+						<thead class="table-active">
+							<tr>
+								<th class="col-1">Sl.no</th>
+								<th>Course Name</th>
+								<th>Discription</th>
+								<th>Price</th>
+								<th>Buy to Watch</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>1</td>
+								<td>How to make Roti</td>
+								<td>Vivek's ninja technique</td>
+								<td> <del>₹ 1000</del> - ₹100</td>
+								<td>
+									<!--									<form action="/buyCourse" method="post">-->
+									<!--										<input type="hidden" name="paidCourseName" value="How to open the Door">-->
+									<!--										<input type="hidden" name="paidCoursePrice" value="100">-->
+									<!--										<input class="rounded-3" type="submit" value="Buy Course">-->
+									<button class="rounded-3"> <del>Buy course</del></button>
+									<a href="#paidVideo-section"><button class="rounded-3">watch now</button></a>
+									</form>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+
+		<!--			Free course table-->
+		<div class="container shadow-lg mt-5 border border-dark rounded-5 bg-dark-subtle p-2 mt-4 ">
+			<!--			<div class="container mt-5 py-2 px-5 border rounded-4 bg-secondary border-dark ">-->
+			<div class="container mt-3 pb-5 px-5 justify-content-center  ">
+				<h2 class="text-center  fw-bold text-body-emphasis lh-1">Free courses</h2>
+				<div class="table-responsive" id="free-course">
+					<table class="table border border-dark  border-2 table-bordered  table-hover table-light  ">
+						<thead>
+							<tr class="table-dark">
+								<th scope="col" class="col-1  ">Sl.no.</th>
+								<th scope="col" class="">Course ID</th>
+								<th scope="col" class="">Course Name</th>
+								<th scope="col" class="">Trainer Name</th>
+								<th scope="col">Lesson</th>
+								<th scope="col " class="">Videos</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="clist , rowStat: ${clist}">
+								<td th:text="${rowStat.count}"></td>
+								<td th:text="${clist.courseId}"></td>
+								<td th:text="${clist.courseName}"></td>
+								<td class="fw-semibold">
+									<ul th:each="users : ${clist.enrolledUsers}">
+										<span th:text="${users.name}"></span>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li th:each="lesson : ${clist.lessons}">
+											<span th:text="${lesson.lessonName}"></span>
+										</li>
+									</ul>
+								</td>
+								<td>
+									<ul>
+										<li th:each="lesson : ${clist.lessons}">
+											<button class="fw-bold rounded-4 mb-1 "> <a th:href="${lesson.link}"
+													data-link="${lesson.link}">
+													<span th:text="${'Watch Now'}"></span>
+												</a>
+											</button>
+										</li>
+									</ul>
+
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!--			</div>-->
+			</div>
+		</div>
+
+
+
+		<!--			Iframe-->
+
+		<div class="container shadow-lg border border-dark rounded-5 bg-dark-subtle mb-5  mt-5">
+			<!--				<div class="container border border-dark rounded-4">-->
+			<div class=" bg-dark-subtle mt-5 mb-3 py-2">
+				<div class=" video-container d-felx text-center justify-content-center   align-items-center">
+					<iframe class=" " id="video-iframe" width="76%" height="480"
+						src="https://www.youtube.com/embed/watch?v=brjAjq4zEIE" title="Youtube videos" frameborder="1"
+						allow="accelerometer;  autoplay ; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+						allowfullscreen></iframe>
+					<div class="row mt-0 pb-1">
+						<div class="col-12 d-flex justify-content-center align-items-center">
+							<div class="content bg-secondary bg-opacity-50 border border-dark rounded-4 "
+								style="width: 50px; height: 25px;">
+								<img src="/static/images/mac.png" class="d-block mx-lg-auto img-fluid "
+									alt="Bootstrap Themes" width="23" height="23" loading="lazy">
+								<!-- Your content goes here -->
+							</div>
+						</div>
+					</div>
+					<div class="row ">
+						<div class="col-12 d-flex justify-content-center align-items-center">
+							<div class="content bg-secondary bg-opacity-53 border border-dark rounded-5 "
+								style="width: 120px; height: 20px;">
+								<!-- Your content goes here -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!--				</div>-->
+	</div>
+	<!--					paid video container-->
+	<div class=" container  shadow-lg border border-dark rounded-5 bg-dark-subtle mb-5  mt-5 pt-4"
+		id="paidVideo-section">
+		<!--				<div class="container border border-dark rounded-4">-->
+		<h2 class="text-center  fw-bold text-body-emphasis lh-1 pb-3">Paid course</h2>
+		<div class=" bg-dark-subtle mt-2 mb-3 py-2">
+			<div class=" video-container d-felx text-center justify-content-center   align-items-center">
+				<video width="76%" height="480" controls>
+					<source src="static/videos/roti.mp4" type="video/mp4">
+					<source src="movie.ogg" type="video/ogg">
+					Your browser does not support the video tag.
+				</video>
+				<div class="row mt-0 pb-1">
+					<div class="col-12 d-flex justify-content-center align-items-center">
+						<div class="content bg-secondary bg-opacity-50 border border-dark rounded-4 "
+							style="width: 50px; height: 25px;">
+							<img src="/static/images/mac.png" class="d-block mx-lg-auto img-fluid "
+								alt="Bootstrap Themes" width="23" height="23" loading="lazy">
+						</div>
+					</div>
+				</div>
+				<div class="row ">
+					<div class="col-12 d-flex justify-content-center align-items-center">
+						<div class="content bg-secondary bg-opacity-53 border border-dark rounded-5 "
+							style="width: 120px; height: 20px;">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--				</div>-->
+	</div>
+
+	<!--			comment section-->
+	<div class="container bg-dark-subtle mb-5 border border-dark border-4 rounded-5">
+		<div class="container mt-2">
+			<form id="comment-form" action="/addComment" method="post">
+				<div class="mb-1">
+					<label for="comment" class="form-label">Comment:</label>
+					<textarea class="form-control p-1 " name="content" id="comment" rows="3" required>
+				</textarea>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+		</div>
+
+		<div class=" container mt-2 mb-4">
+			<h4>Comment Box</h4>
+			<div class="card">
+				<div class="card-body " id="comment-box">
+					<div th:each="comment : ${comments}">
+						<span class="fw-semibold" th:text="${comment.userName}"></span>: <span
+							th:text="${comment.content}"></span>
+						<p class="fw-lighter fs-6" th:text="${comment.dateAndTime}"></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!--			Login timing table-->
+	<div class="container shadow-lg mt-5 border border-dark rounded-5 bg-dark-subtle p-2 mt-4 mb-5 ">
+		<!--			<div class="container mt-5 py-2 px-5 border rounded-4 bg-secondary border-dark ">-->
+		<div class="container mt-3 pb-5 px-5 justify-content-center  ">
+			<h2 class="text-center  fw-bold text-body-emphasis lh-1">Free courses</h2>
+			<div class="table-responsive" id="login-table">
+				<table class="table border border-dark  border-2 table-bordered  table-hover table-light  ">
+					<thead>
+						<tr class="table-dark">
+							<th scope="col" class="col-1  ">Sl.no.</th>
+							<th scope="col" class="">User Name</th>
+							<th scope="col" class="">Role</th>
+							<th scope="col">Email</th>
+							<th scope="col">Date-Time</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="loginData , rowStat: ${loginDataList}">
+							<td th:text="${rowStat.count}"></td>
+							<td th:text="${loginData.userName}"></td>
+							<td th:text="${loginData.role}"></td>
+							<td th:text="${loginData.email}"></td>
+							<td th:text="${loginData.dateAndTime}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!--			</div>-->
+		</div>
+	</div>
+
+	<!--			feedback section-->
+	<div class="container bg-dark-subtle mb-5 border border-dark border-4 rounded-5">
+		<div class="container mt-2">
+			<div class="container mt-2 mb-4">
+				<h4 class="text-center fw-bold">Feedback from students</h4>
+				<div class="card">
+					<div class="card-body " id="feedback-box">
+						<div th:each="feedback : ${feedbacks}">
+							<span class="fw-semibold" th:text="${feedback.userName}"></span>: <span
+								th:text="${feedback.content}"></span>
+							<p class="fw-lighter fs-6" th:text="${feedback.dateAndTime}"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+		<!--		footer-->
+		<div id="contact-section">
+			<footer class="bg-dark shadow text-white py-2">
+				<p class="text-center text-white fw-light m-0">Contact@ </p>
+				<ul class="nav justify-content-center ">
+					<li class="nav-item"><a href="https://www.facebook.com/VivekSotangRai" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/fb.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://instagram.com/viveksotangrai?igshid=MzMyNGUyNmU2YQ=="
+							target="_blank" class="nav-link px-2 text-white">
+							<img src="/static/images/instagram.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="https://www.linkedin.com/in/vivekrai1997" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/linkedin.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="50" height="50" loading="lazy">
+						</a></li>
+					<li class="nav-item"><a href="mailto:viveksotangrai@gmail.com" target="_blank"
+							class="nav-link px-2 text-white">
+							<img src="/static/images/gmail.png" class="d-block mx-lg-auto img-fluid  "
+								alt="Bootstrap Themes" width="45" height="45" loading="lazy">
+						</a> </li>
+					</a></li>
+				</ul>
+				<p class="text-center text-secondary">© 2023 dtownacademy - <span
+						class="text-white fw-lighter">viveksotangrai@gmail.com</span> </p>
+			</footer>
+		</div>
+		<!--Container closing div-->
+	</div>
+
+	<script>
+		// Function to set the video source in the iframe and scroll to it
+		function setVideoSourceAndScroll(link) {
+			const videoIframe = document.getElementById("video-iframe");
+			videoIframe.src = link;
+
+
+			// Scroll to the iframe container and center it on the screen
+			const videoContainer = document.querySelector(".video-container");
+			videoContainer.scrollIntoView({behavior: "smooth"});
+			const windowHeight = window.innerHeight;
+			const iframeHeight = videoContainer.offsetHeight;
+
+			// Calculate the scroll position to center the iframe
+			const scrollToY = videoContainer.offsetTop - (windowHeight - iframeHeight) / 1.2;
+
+			window.scrollTo({
+				top: scrollToY,
+				behavior: "smooth"
+			});
+
+		}
+
+		// Add click event listeners to all "Watch" links
+		const watchLinks = document.querySelectorAll("a[data-link]");
+		watchLinks.forEach(link => {
+			link.addEventListener("click", function (event) {
+				event.preventDefault();
+				const videoLink = this.getAttribute("href");
+				setVideoSourceAndScroll(videoLink);
+			});
+		});
+	</script>
+
+
+	<script>
+		// Function to set the video source in the iframe
+		function setVideoSource(link) {
+			const videoIframe = document.getElementById("video-iframe");
+			videoIframe.src = link;
+		}
+
+		// Add click event listeners to all "Watch" links (your existing code)
+
+		// Set the default video URL when the page loads
+		window.addEventListener("load", function () {
+			const defaultVideoURL = "https://www.youtube.com/embed/DEFAULT_VIDEO_ID";
+			setVideoSource(defaultVideoURL);
+		});
+	</script>
+
+
+
+
+
+
+
+
+
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+		crossorigin="anonymous"></script>
+</body>
+
+</html>
