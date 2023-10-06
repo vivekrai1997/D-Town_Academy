@@ -30,6 +30,12 @@ This website is primarily optimized for desktop/laptop viewing, and mobile users
 
 - **Tools**: Postman, GitHub, Heroku Cloud.
 
+##Hosting and Database
+We've hosted D-Town Academy on Heroku Cloud for reliable and scalable web hosting. Heroku simplifies deployment and supports effortless scaling as our user base grows. For database management, we use Heroku Postgres, providing robust and managed relational databases for data durability and performance.
+
+##Version Control
+Our source code is managed on GitHub, a popular platform for version control and collaborative software development. You can explore the codebase, report issues, and contribute by visiting our GitHub repository.
+
 ## Getting Started
 
 1. Clone the repository.
