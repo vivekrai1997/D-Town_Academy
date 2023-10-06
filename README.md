@@ -1,6 +1,6 @@
 # D-Town Academy https://vivek.dtownacademy.online/
 
-D-Town Academy is an online learning platform built with Java Spring, designed to empower both students and trainers. Whether you're here to learn or teach, we've got you covered.
+D-Town Academy is an online learning platform built in Springboot (JAVA), designed to empower both students and trainers. Whether you're here to learn or teach, we've got you covered.
 
 This website is primarily optimized for desktop/laptop viewing, and mobile users may experience abnormal behavior or encounter issues with responsive design,switching to desktop site may help a bit.
 
